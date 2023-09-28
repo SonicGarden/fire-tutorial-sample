@@ -23,6 +23,7 @@
     "postcss.config.js",
     ".eslintrc.js",
     ".prettierrc.js",
+    ".stylelintrc.js",
     "**/*.ts",
     "**/*.tsx"
   ],
