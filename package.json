@@ -15,6 +15,7 @@
     "react-dom": "latest"
   },
   "devDependencies": {
+    "@sonicgarden/next-csr-rewrites-generator": "^1.2.0",
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
