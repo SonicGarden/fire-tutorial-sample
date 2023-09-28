@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "env-cmd -f .env.default next dev",
+    "build": "env-cmd -f .env.default next build",
+    "start": "env-cmd -f .env.default next start",
+    "lint": "next lint",
+    "deploy": "yarn build && firebase deploy --project default"
   },
   "dependencies": {
     "next": "latest",
