@@ -7,7 +7,7 @@
     "build": "env-cmd -f .env.default next build",
     "start": "env-cmd -f .env.default next start",
     "lint": "next lint",
-    "deploy": "yarn build && yarn rewrites:generate && firebase deploy --project default",
+    "deploy": "rm -rf .firebase && yarn build && yarn rewrites:generate && firebase deploy --project default",
     "rewrites:generate": "next-csr-rewrites-generate --format firebase"
   },
   "dependencies": {
