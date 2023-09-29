@@ -1,9 +1,9 @@
 {
   "name": "functions",
   "scripts": {
-    "lint": "eslint --ext .js,.ts .",
-    "lint:fix": "eslint --fix --ext .js,.ts .",
-    "format": "prettier --write .",
+    "lint": "eslint --ext .js,.ts ./src",
+    "lint:fix": "eslint --fix --ext .js,.ts ./src",
+    "format": "prettier --write ./src",
     "build": "rm -rf lib && tsc",
     "build:watch": "tsc --watch",
     "serve": "npm run build && firebase emulators:start --only functions",
