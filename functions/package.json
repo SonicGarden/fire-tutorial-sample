@@ -17,6 +17,7 @@
   },
   "main": "lib/index.js",
   "dependencies": {
+    "@local/shared": "file:packages/shared",
     "firebase-admin": "^11.8.0",
     "firebase-functions": "^4.3.1"
   },

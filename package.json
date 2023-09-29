@@ -17,6 +17,7 @@
     "update:shared:functions": "cd functions && yarn add file:packages/shared"
   },
   "dependencies": {
+    "@local/shared": "file:functions/packages/shared",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest"
