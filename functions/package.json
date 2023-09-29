@@ -4,12 +4,12 @@
     "lint": "eslint --ext .js,.ts .",
     "lint:fix": "eslint --fix --ext .js,.ts .",
     "format": "prettier --write .",
-    "build": "tsc",
+    "build": "rm -rf lib && tsc",
     "build:watch": "tsc --watch",
     "serve": "npm run build && firebase emulators:start --only functions",
     "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",
-    "deploy": "firebase deploy --only functions",
+    "deploy": "firebase deploy --only functions --project default",
     "logs": "firebase functions:log"
   },
   "engines": {
