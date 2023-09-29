@@ -1,0 +1,16 @@
+{
+  "name": "@local/shared",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint --ext .js,.ts ./src",
+    "lint:fix": "eslint --fix --ext .js,.ts ./src",
+    "format": "prettier --write ."
+  },
+  "private": true
+}
