@@ -9,7 +9,7 @@
     "lint": "next lint && stylelint 'src/**/*.css'",
     "lint:fix": "next lint --fix && stylelint 'src/**/*.css' --fix",
     "format": "prettier --write .",
-    "deploy": "rm -rf .firebase && yarn build && yarn rewrites:generate && firebase deploy --project default",
+    "deploy": "rm -rf .firebase && yarn build && yarn rewrites:generate && firebase deploy --except functions --project default",
     "rewrites:generate": "next-csr-rewrites-generate --format firebase && yarn format"
   },
   "dependencies": {
