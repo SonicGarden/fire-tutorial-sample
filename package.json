@@ -19,6 +19,8 @@
   },
   "dependencies": {
     "@local/shared": "file:functions/packages/shared",
+    "@mantine/core": "^7.1.0",
+    "@mantine/hooks": "^7.1.0",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest"
