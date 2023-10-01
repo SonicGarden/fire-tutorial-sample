@@ -8,7 +8,7 @@ import { notify } from '@/utils/mantine/notifications';
 
 export const AccountMenu = () => {
   const router = useRouter();
-  const { firebaseUser } = useAuth();
+  const { currentUser } = useAuth();
   const handleConfirmSignOut = useCallback(async () => {
     await signOut();
     notify.info({
@@ -18,13 +18,13 @@ export const AccountMenu = () => {
 
   return (
     <Box aria-label='アカウントメニュー'>
-      {firebaseUser ? (
+      {currentUser ? (
         <>
           <NavLink
             label={
               <Group>
                 <Avatar size='sm' />
-                <Text>{firebaseUser.email}</Text>
+                <Text>{currentUser.email}</Text>
               </Group>
             }
           >
