@@ -24,7 +24,8 @@
     "firebase": "^10.4.0",
     "next": "latest",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "react-firebase-hooks": "^5.1.1"
   },
   "devDependencies": {
     "@sonicgarden/next-csr-rewrites-generator": "^1.2.0",
