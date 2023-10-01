@@ -1,7 +1,9 @@
 import { Avatar, Box, Group, NavLink, Text } from '@mantine/core';
+import { useRouter } from 'next/router';
 import { useAuth } from '@/contexts/auth';
 
 export const AccountMenu = () => {
+  const router = useRouter();
   const { firebaseUser } = useAuth();
 
   return (
@@ -22,7 +24,10 @@ export const AccountMenu = () => {
       ) : (
         <>
           <NavLink label='サインイン'></NavLink>
-          <NavLink label='サインアップ'></NavLink>
+          <NavLink
+            label='サインアップ'
+            onClick={() => router.push({ pathname: '/sign-up', query: { redirect: router.asPath } })}
+          ></NavLink>
         </>
       )}
     </Box>
