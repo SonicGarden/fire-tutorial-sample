@@ -1,7 +1,8 @@
 import { ResponsiveLayout, useResponsiveLayoutContext } from '@/components/layouts/ResponsiveLayout';
+import { withAuth } from '@/contexts/auth';
 import type { ReactNode } from 'react';
 
-export const Layout = ({ children }: { children: ReactNode }) => {
+export const Layout = withAuth(({ children }: { children: ReactNode }) => {
   return (
     <ResponsiveLayout
       header={{ title: 'Firebaseチュートリアル' }}
@@ -10,6 +11,6 @@ export const Layout = ({ children }: { children: ReactNode }) => {
       {children}
     </ResponsiveLayout>
   );
-};
+});
 
 export const useLayout = useResponsiveLayoutContext;
