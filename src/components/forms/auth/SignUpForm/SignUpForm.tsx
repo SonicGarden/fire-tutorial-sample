@@ -26,7 +26,7 @@ const schema = z
     path: ['passwordConfirmation'],
   });
 
-export const SignUpForm = ({ onSubmit }: { onSubmit?: () => void }) => {
+export const SignUpForm = () => {
   const form = useForm<FormValues>({
     validate: zodResolver(schema),
     initialValues: { email: '', password: '', passwordConfirmation: '' },
@@ -38,7 +38,6 @@ export const SignUpForm = ({ onSubmit }: { onSubmit?: () => void }) => {
         setLoading(true);
         await createUserWithEmailAndPassword(email, password);
         notify.info({ message: 'サインアップしました' });
-        onSubmit?.();
         // NOTE: ローディングを解除すると一瞬フォームが表示されるので、ここでは解除しない
       } catch (error) {
         console.error(error);
@@ -46,7 +45,7 @@ export const SignUpForm = ({ onSubmit }: { onSubmit?: () => void }) => {
         setLoading(false);
       }
     },
-    [onSubmit, setLoading],
+    [setLoading],
   );
 
   return (

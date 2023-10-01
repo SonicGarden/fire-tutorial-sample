@@ -18,7 +18,7 @@ const schema = z.object({
   password: passwordValidation,
 });
 
-export const SignInWithEmailAndPasswordForm = ({ onSubmit }: { onSubmit?: () => void }) => {
+export const SignInWithEmailAndPasswordForm = () => {
   const form = useForm<FormValues>({
     validate: zodResolver(schema),
     initialValues: { email: '', password: '' },
@@ -30,7 +30,6 @@ export const SignInWithEmailAndPasswordForm = ({ onSubmit }: { onSubmit?: () => 
         setLoading(true);
         await signInWithEmailAndPassword(email, password);
         notify.info({ message: 'サインインしました' });
-        onSubmit?.();
         // NOTE: ローディングを解除すると一瞬フォームが表示されるので、ここでは解除しない
       } catch (error) {
         console.error(error);
@@ -38,7 +37,7 @@ export const SignInWithEmailAndPasswordForm = ({ onSubmit }: { onSubmit?: () => 
         setLoading(false);
       }
     },
-    [onSubmit, setLoading],
+    [setLoading],
   );
 
   return (
