@@ -41,7 +41,7 @@ const getConverter = <T extends DocumentData>(): FirestoreDataConverter<WithId<T
 const getDocumentData = async <T>(ref: DocumentReference<T>) =>
   ref.get().then((doc) => ({ data: { id: doc.id, ...doc.data() } as T, exists: doc.exists }));
 
-export type { Environment };
+export type { DocumentReference, Environment };
 export {
   environment,
   environments,
