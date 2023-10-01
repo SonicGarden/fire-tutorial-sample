@@ -16,7 +16,8 @@
     "build:shared": "cd functions/packages/shared && yarn build",
     "update:shared:hosting": "yarn add file:functions/packages/shared",
     "update:shared:functions": "cd functions && yarn add file:packages/shared",
-    "preinstall": "cd functions/packages/shared && yarn install && yarn build"
+    "preinstall": "cd functions/packages/shared && yarn install && yarn build",
+    "ts-node": "env-cmd -f .env.default ts-node"
   },
   "dependencies": {
     "@local/shared": "file:functions/packages/shared",
