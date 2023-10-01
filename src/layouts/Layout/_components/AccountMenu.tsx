@@ -1,10 +1,20 @@
 import { Avatar, Box, Group, NavLink, Text } from '@mantine/core';
 import { useRouter } from 'next/router';
+import { useCallback } from 'react';
+import { UnstyledConfirmButton } from '@/components/elements/ConfirmButton';
 import { useAuth } from '@/contexts/auth';
+import { signOut } from '@/utils/firebase/auth';
+import { notify } from '@/utils/mantine/notifications';
 
 export const AccountMenu = () => {
   const router = useRouter();
   const { firebaseUser } = useAuth();
+  const handleConfirmSignOut = useCallback(async () => {
+    await signOut();
+    notify.info({
+      message: 'サインアウトしました',
+    });
+  }, []);
 
   return (
     <Box aria-label='アカウントメニュー'>
@@ -18,7 +28,12 @@ export const AccountMenu = () => {
               </Group>
             }
           >
-            <NavLink label='サインアウト' />
+            <NavLink
+              label='サインアウト'
+              component={UnstyledConfirmButton}
+              message='本当にサインアウトしますか？'
+              onConfirm={handleConfirmSignOut}
+            />
           </NavLink>
         </>
       ) : (
