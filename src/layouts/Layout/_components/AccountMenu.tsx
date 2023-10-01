@@ -38,7 +38,10 @@ export const AccountMenu = () => {
         </>
       ) : (
         <>
-          <NavLink label='サインイン'></NavLink>
+          <NavLink
+            label='サインイン'
+            onClick={() => router.push({ pathname: '/sign-in', query: { redirect: router.asPath } })}
+          ></NavLink>
           <NavLink
             label='サインアップ'
             onClick={() => router.push({ pathname: '/sign-up', query: { redirect: router.asPath } })}
