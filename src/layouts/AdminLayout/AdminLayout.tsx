@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { ResponsiveLayout, useResponsiveLayoutContext } from '@/components/layouts/ResponsiveLayout';
 import { LoadingScreen } from '@/components/screens/LoadingScreen';
+import { NotFoundScreen } from '@/components/screens/NotFoundScreen';
 import { withAuth, useAuth } from '@/contexts/auth';
 import { usePermissions } from '@/hooks/usePermissions';
 import { AccountMenu } from '../_components/AccountMenu';
@@ -18,10 +19,7 @@ export const AdminLayout = withAuth(({ children }: { children: ReactNode }) => {
     router.push({ pathname: '/admin/sign-in', query: { redirect: router.asPath } });
     return <LoadingScreen />;
   }
-  if (!validatePathPermission(router.asPath)) {
-    router.push('/');
-    return <LoadingScreen />;
-  }
+  if (!validatePathPermission(router.asPath)) return <NotFoundScreen />;
 
   return (
     <ResponsiveLayout
