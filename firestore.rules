@@ -8,9 +8,17 @@ service cloud.firestore {
     function isOwn(uid) {
       return isSignedIn() && request.auth.uid == uid;
     }
+    function isAdmin() {
+      return isSignedIn() && request.auth.token.role == 'admin';
+    }
 
     match /users/{uid} {
       allow get: if isOwn(uid);
+    }
+
+    match /books/{bookId} {
+      allow read: if true;
+      allow write: if isAdmin();
     }
   }
 }
