@@ -1,5 +1,6 @@
-import { Text, Stack, Image, Input } from '@mantine/core';
+import { Image, Input, Center } from '@mantine/core';
 import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone';
+import { IconPhoto } from '@tabler/icons-react';
 import { useCallback } from 'react';
 import { z } from 'zod';
 import type { InputWrapperProps } from '@mantine/core';
@@ -25,12 +26,15 @@ export const ImageDropzone = <Form extends UseFormReturnType<any>>({
 
   return (
     <Input.Wrapper label={label} aria-label={label} {...props} {...form.getInputProps(name)}>
-      <Stack>
-        <Dropzone accept={IMAGE_MIME_TYPE} onDrop={handleDrop}>
-          <Text ta='center'>画像を選択してください</Text>
-        </Dropzone>
-        {form.values.image && <Image src={URL.createObjectURL(form.values.image)} fit='contain' alt='プレビュー' />}
-      </Stack>
+      <Dropzone accept={IMAGE_MIME_TYPE} onDrop={handleDrop}>
+        <Center>
+          {form.values.image ? (
+            <Image src={URL.createObjectURL(form.values.image)} h={200} w='auto' alt='プレビュー' />
+          ) : (
+            <IconPhoto color='gray' />
+          )}
+        </Center>
+      </Dropzone>
     </Input.Wrapper>
   );
 };
