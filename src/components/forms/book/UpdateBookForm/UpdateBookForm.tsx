@@ -8,7 +8,7 @@ import { notify } from '@/utils/mantine/notifications';
 import { DescriptionInput, descriptionValidation } from '../DescriptionInput';
 import { ImageDropzone, imageValidation } from '../ImageDropzone';
 import { TitleInput, titleValidation } from '../TitleInput';
-import type { BookDocumentData } from '@/types';
+import type { Book, BookDocumentData } from '@/types';
 
 type FormValues = {
   title: BookDocumentData['title'];
@@ -22,18 +22,20 @@ const schema = z.object({
   image: imageValidation,
 });
 
-export const CreateBookForm = ({
+export const UpdateBookForm = ({
+  book,
   onSubmit,
   onCancel,
 }: {
+  book: Book;
   onSubmit?: () => void | Promise<void>;
   onCancel?: () => void | Promise<void>;
 }) => {
   const form = useForm<FormValues>({
     validate: zodResolver(schema),
     initialValues: {
-      title: '',
-      description: '',
+      title: book.title,
+      description: book.description,
       image: null,
     },
   });
