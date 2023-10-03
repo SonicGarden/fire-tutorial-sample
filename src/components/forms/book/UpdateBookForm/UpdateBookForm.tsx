@@ -3,10 +3,10 @@ import { useForm, zodResolver } from '@mantine/form';
 import { useCallback, useState } from 'react';
 import { z } from 'zod';
 import { LoadingOverlayButton } from '@/components/elements/LoadingOverlayButton';
-import { createBook, newBookRef } from '@/models/book';
+import { bookRef, updateBook } from '@/models/book';
 import { notify } from '@/utils/mantine/notifications';
 import { DescriptionInput, descriptionValidation } from '../DescriptionInput';
-import { ImageDropzone, imageValidation } from '../ImageDropzone';
+import { ImageDropzone, updateImageValidation } from '../ImageDropzone';
 import { TitleInput, titleValidation } from '../TitleInput';
 import type { Book, BookDocumentData } from '@/types';
 
@@ -19,7 +19,7 @@ type FormValues = {
 const schema = z.object({
   title: titleValidation,
   description: descriptionValidation,
-  image: imageValidation,
+  image: updateImageValidation,
 });
 
 export const UpdateBookForm = ({
@@ -44,17 +44,17 @@ export const UpdateBookForm = ({
     async (values: FormValues) => {
       try {
         setLoading(true);
-        await createBook(newBookRef(), { ...values, image: values.image! });
+        await updateBook(bookRef(book.id), values);
         await onSubmit?.();
-        notify.info({ message: '書籍を作成しました' });
+        notify.info({ message: '書籍を更新しました' });
       } catch (error) {
         console.error(error);
-        notify.error({ message: '作成に失敗しました' });
+        notify.error({ message: '更新に失敗しました' });
       } finally {
         setLoading(false);
       }
     },
-    [onSubmit],
+    [book.id, onSubmit],
   );
 
   return (
@@ -72,7 +72,7 @@ export const UpdateBookForm = ({
             </Button>
           )}
           <LoadingOverlayButton type='submit' loading={loading}>
-            作成
+            更新
           </LoadingOverlayButton>
         </Button.Group>
       </Group>

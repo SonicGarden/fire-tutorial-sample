@@ -3,6 +3,7 @@ import { IconEdit, IconTrash } from '@tabler/icons-react';
 import { useCallback } from 'react';
 import { UnstyledConfirmButton } from '@/components/elements/ConfirmButton';
 import { UnstyledModalButton } from '@/components/elements/ModalButton';
+import { UpdateBookForm } from '@/components/forms/book/UpdateBookForm';
 import type { Book as BookType } from '@/types';
 
 export const Book = ({ book }: { book: BookType }) => {
@@ -16,7 +17,7 @@ export const Book = ({ book }: { book: BookType }) => {
             variant='white'
             color='secondary'
             component={UnstyledModalButton}
-            modalContent={() => '更新フォーム'}
+            modalContent={({ close }) => <UpdateBookForm book={book} onSubmit={close} onCancel={close} />}
             modalProps={{ title: '書籍' }}
           >
             <IconEdit />

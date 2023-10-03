@@ -7,6 +7,7 @@ import type { FileWithPath } from '@mantine/dropzone';
 import type { UseFormReturnType } from '@mantine/form';
 
 export const imageValidation = z.custom<File>((file) => file, { message: '必須項目です' });
+export const updateImageValidation = z.custom<File | null>();
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const ImageDropzone = <Form extends UseFormReturnType<any>>({

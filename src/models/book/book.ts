@@ -8,11 +8,12 @@ import {
   query,
   serverTimestamp,
   setDoc,
+  updateDoc,
 } from '@/utils/firebase/firestore';
 import { getDownloadURL, getStorage, ref, uploadBytes } from '@/utils/firebase/storage';
 import type { Book, BookDocumentData } from '@/types';
-import type { DocumentReference, QueryConstraint } from '@/utils/firebase/firestore';
-import type { StorageReference, UploadMetadata } from '@/utils/firebase/storage';
+import type { DocumentReference, QueryConstraint, UpdateData } from '@/utils/firebase/firestore';
+import type { StorageReference } from '@/utils/firebase/storage';
 
 export const bookConverter = getConverter<BookDocumentData>();
 
@@ -31,8 +32,12 @@ export const bookStorageRef = (id: string) => ref(getStorage(), `books/${id}`);
 
 export const bookImageStorageRef = (id: string) => ref(bookStorageRef(id), 'image');
 
-export const uploadImage = async (ref: StorageReference, file: File, metadata: UploadMetadata = {}) =>
-  uploadBytes(ref, file, metadata);
+export const uploadImage = async (ref: StorageReference, image: File) => {
+  const metadata = { contentType: image.type };
+  const snapshot = await uploadBytes(ref, image, metadata);
+  const url = await getDownloadURL(snapshot.ref);
+  return { snapshot, url };
+};
 
 export const createBook = async (
   ref: DocumentReference<Book>,
@@ -40,15 +45,27 @@ export const createBook = async (
 ) => {
   const { id } = ref;
   const { image, ...rest } = data;
-  const metadata = { contentType: image.type };
-  const snapshot = await uploadImage(bookImageStorageRef(id), image, metadata);
-  const url = await getDownloadURL(snapshot.ref);
+  const { snapshot, url } = await uploadImage(bookImageStorageRef(id), image);
   return setDoc(ref, {
     ...rest,
     image: { path: snapshot.ref.fullPath, url },
     createdAt: serverTimestamp(),
     updatedAt: serverTimestamp(),
   } as BookDocumentData);
+};
+
+export const updateBook = async (
+  ref: DocumentReference<Book>,
+  data: UpdateData<Omit<Book, 'image'>> & { image?: File | null },
+) => {
+  const { id } = ref;
+  const { image, ...rest } = data;
+  const { snapshot, url } = image ? await uploadImage(bookImageStorageRef(id), image) : { snapshot: null, url: null };
+  return updateDoc(ref, {
+    ...rest,
+    ...(snapshot && { image: { path: snapshot.ref.fullPath, url } }),
+    updatedAt: serverTimestamp(),
+  });
 };
 
 export const useBookCollection = useCollectionData<Book>;
