@@ -1,5 +1,6 @@
 import {
   collection,
+  deleteDoc,
   doc,
   getFirestore,
   orderBy,
@@ -36,4 +37,16 @@ const getConverter = <T extends DocumentData>(): FirestoreDataConverter<WithId<T
 const serverTimestamp = _serverTimestamp as unknown as () => Timestamp;
 
 export type { DocumentReference, Query, QueryConstraint, UpdateData };
-export { collection, doc, getConverter, getFirestore, orderBy, query, serverTimestamp, setDoc, updateDoc, Timestamp };
+export {
+  collection,
+  doc,
+  deleteDoc,
+  getConverter,
+  getFirestore,
+  orderBy,
+  query,
+  serverTimestamp,
+  setDoc,
+  updateDoc,
+  Timestamp,
+};

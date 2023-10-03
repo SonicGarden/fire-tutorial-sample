@@ -1,6 +1,7 @@
 import { useCollectionData } from '@/hooks/useCollectionData';
 import {
   collection,
+  deleteDoc,
   doc,
   getConverter,
   getFirestore,
@@ -10,7 +11,7 @@ import {
   setDoc,
   updateDoc,
 } from '@/utils/firebase/firestore';
-import { getDownloadURL, getStorage, ref, uploadBytes } from '@/utils/firebase/storage';
+import { deleteObject, getDownloadURL, getStorage, ref, uploadBytes } from '@/utils/firebase/storage';
 import type { Book, BookDocumentData } from '@/types';
 import type { DocumentReference, QueryConstraint, UpdateData } from '@/utils/firebase/firestore';
 import type { StorageReference } from '@/utils/firebase/storage';
@@ -66,6 +67,11 @@ export const updateBook = async (
     ...(snapshot && { image: { path: snapshot.ref.fullPath, url } }),
     updatedAt: serverTimestamp(),
   });
+};
+
+export const deleteBook = async (book: Book) => {
+  await deleteObject(ref(getStorage(), book.image.path));
+  return deleteDoc(bookRef(book.id));
 };
 
 export const useBookCollection = useCollectionData<Book>;
