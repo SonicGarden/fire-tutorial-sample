@@ -1,4 +1,4 @@
-import { Table, ActionIcon } from '@mantine/core';
+import { Table, ActionIcon, Image } from '@mantine/core';
 import { IconEdit, IconTrash } from '@tabler/icons-react';
 import { useCallback } from 'react';
 import { UnstyledConfirmButton } from '@/components/elements/ConfirmButton';
@@ -33,8 +33,11 @@ export const Book = ({ book }: { book: BookType }) => {
         </ActionIcon.Group>
       </Table.Td>
       <Table.Td>{book.id}</Table.Td>
+      <Table.Td>
+        <Image src={book.image.url} h={100} w='auto' alt='表紙' />
+      </Table.Td>
       <Table.Td>{book.title}</Table.Td>
-      <Table.Td>{book.description}</Table.Td>
+      <Table.Td className='tw-whitespace-pre-wrap'>{book.description}</Table.Td>
     </Table.Tr>
   );
 };

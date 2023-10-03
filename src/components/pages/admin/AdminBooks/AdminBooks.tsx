@@ -32,6 +32,7 @@ export const AdminBooks = () => {
           <Table.Tr>
             <Table.Th></Table.Th>
             <Table.Th>ID</Table.Th>
+            <Table.Th>表紙</Table.Th>
             <Table.Th>タイトル</Table.Th>
             <Table.Th>説明</Table.Th>
           </Table.Tr>
