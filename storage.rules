@@ -9,7 +9,7 @@ service firebase.storage {
   }
 
   match /b/{bucket}/o {
-    match /books/{bookId} {
+    match /books/{bookId}/{allPaths=**} {
       allow read: if isAdmin();
       allow write: if isAdmin();
     }
