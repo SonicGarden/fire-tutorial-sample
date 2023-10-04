@@ -1,4 +1,4 @@
-import { Box, Stack, Title, Group, Table, ActionIcon } from '@mantine/core';
+import { Box, Stack, Title, Group, Table, ActionIcon, LoadingOverlay } from '@mantine/core';
 import { IconSquareRoundedPlus } from '@tabler/icons-react';
 import { UnstyledModalButton } from '@/components/elements/ModalButton';
 import { CreateBookForm } from '@/components/forms/book/CreateBookForm';
@@ -6,10 +6,11 @@ import { useBookCollection, booksQuery } from '@/models/book';
 import { Book } from './_components/Book';
 
 export const AdminBooks = () => {
-  const { data: books } = useBookCollection(booksQuery());
+  const { data: books, loading } = useBookCollection(booksQuery());
 
   return (
-    <Box>
+    <Box pos='relative'>
+      <LoadingOverlay visible={loading} />
       <Stack gap='sm' mb='sm'>
         <Title order={1} size='h5'>
           書籍管理
