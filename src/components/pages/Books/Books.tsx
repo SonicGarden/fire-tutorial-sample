@@ -1,5 +1,16 @@
-import { Center } from '@mantine/core';
+import { Box, Center, Group, LoadingOverlay } from '@mantine/core';
+import { booksQuery, useBookCollection } from '@/models/book';
+import { Book } from './_components/Book';
 
 export const Books = () => {
-  return <Center>Books</Center>;
+  const { data: books, loading } = useBookCollection(booksQuery());
+
+  return (
+    <Box pos='relative'>
+      <LoadingOverlay visible={loading} />
+      <Center>
+        <Group gap='sm'>{books?.map((book) => <Book key={book.id} book={book} />)}</Group>
+      </Center>
+    </Box>
+  );
 };
