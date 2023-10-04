@@ -3,6 +3,6 @@ import { LoadingScreen } from '@/components/screens/LoadingScreen';
 
 export const AdminRoot = () => {
   const router = useRouter();
-  router.replace('/admin/books');
+  router.isReady && router.replace('/admin/books');
   return <LoadingScreen />;
 };
