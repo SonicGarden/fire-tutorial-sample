@@ -62,7 +62,7 @@ export const UpdateBookForm = ({
       <Stack gap={10}>
         <TitleInput form={form} withAsterisk />
         <DescriptionInput form={form} withAsterisk />
-        <ImageDropzone form={form} withAsterisk />
+        <ImageDropzone form={form} />
       </Stack>
       <Group justify='flex-end' mt={20}>
         <Button.Group>
