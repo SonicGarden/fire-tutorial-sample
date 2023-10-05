@@ -28,22 +28,24 @@ export const AdminBooks = () => {
           </ActionIcon.Group>
         </Group>
       </Stack>
-      <Table withColumnBorders withTableBorder verticalSpacing='sm'>
-        <Table.Thead>
-          <Table.Tr>
-            <Table.Th></Table.Th>
-            <Table.Th>ID</Table.Th>
-            <Table.Th>表紙</Table.Th>
-            <Table.Th>タイトル</Table.Th>
-            <Table.Th>説明</Table.Th>
-          </Table.Tr>
-        </Table.Thead>
-        <Table.Tbody>
-          {books.map((book) => (
-            <Book key={book.id} book={book} />
-          ))}
-        </Table.Tbody>
-      </Table>
+      <Table.ScrollContainer minWidth='100%'>
+        <Table withColumnBorders withTableBorder verticalSpacing='sm'>
+          <Table.Thead>
+            <Table.Tr>
+              <Table.Th></Table.Th>
+              <Table.Th>ID</Table.Th>
+              <Table.Th>表紙</Table.Th>
+              <Table.Th miw={200}>タイトル</Table.Th>
+              <Table.Th miw={300}>説明</Table.Th>
+            </Table.Tr>
+          </Table.Thead>
+          <Table.Tbody>
+            {books.map((book) => (
+              <Book key={book.id} book={book} />
+            ))}
+          </Table.Tbody>
+        </Table>
+      </Table.ScrollContainer>
     </Box>
   );
 };
