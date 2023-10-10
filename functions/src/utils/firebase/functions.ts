@@ -10,7 +10,7 @@ const beforeUserCreated = (
   _handler?: BeforeUserCreatedHandler,
 ) => {
   const handler = _handler ?? (optsOrHandler as BeforeUserCreatedHandler);
-  return _beforeUserCreated({ region: defaultRegion, memory: '1GiB', timeoutSeconds: 180, ...optsOrHandler }, handler);
+  return _beforeUserCreated({ region: defaultRegion, memory: '1GiB', ...optsOrHandler }, handler);
 };
 
 export { beforeUserCreated, https, logger, HttpsError };
