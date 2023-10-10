@@ -5,6 +5,9 @@ import {
 {{/unless}}
 } from '../utils/firebase';
 import type { {{pascalCase name}}DocumentData } from '../types/{{name}}';
+{{#if subCollection}}
+import type { DocumentReference } from '../utils/firebase/firestore';
+{{/if}}
 
 export const {{name}}Converter = getConverter<{{pascalCase name}}DocumentData>();
 
