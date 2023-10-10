@@ -13,9 +13,9 @@ type AuthContextValue = {
   loading: boolean;
 };
 
-const DEFAULT_USER = 'user';
+const DEFAULT_ROLE = 'user';
 export const AuthContext = createContext<AuthContextValue>({
-  role: DEFAULT_USER,
+  role: DEFAULT_ROLE,
   loading: false,
 });
 
@@ -23,7 +23,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const { user: firebaseUser, claims, loading: loadingAuth } = _useAuth();
   const { data: currentUser, loading: loadingData } = useUserDocument(userRef(firebaseUser?.uid));
   const role = useMemo(
-    () => (claims?.role === currentUser?.role ? claims?.role : DEFAULT_USER) as UserRole,
+    () => (claims?.role === currentUser?.role ? claims?.role : DEFAULT_ROLE) as UserRole,
     [currentUser?.role, claims?.role],
   );
   const loading = useMemo(
