@@ -1,0 +1,32 @@
+import {
+  collection,
+  doc,
+  getConverter,
+{{#unless subCollection}}
+  getFirestore,
+{{/unless}}
+  orderBy,
+  query,
+} from '@/utils/firebase/firestore';
+import type { {{pascalCase name}}, {{pascalCase name}}DocumentData } from '@/types';
+import type { DocumentReference, QueryConstraint } from '@/utils/firebase/firestore';
+
+export const {{name}}Converter = getConverter<{{pascalCase name}}DocumentData>();
+
+{{#if subCollection}}
+export const {{pluralName}}Ref = (parent: DocumentReference) => collection(parent, '{{pluralName}}').withConverter({{name}}Converter);
+
+type RefOrNull<Id extends string | null | undefined> = Id extends string ? DocumentReference<{{pascalCase name}}> : null;
+export const {{name}}Ref = <Id extends string | null | undefined>(parent: DocumentReference, id: Id) => (id ? doc({{pluralName}}Ref(parent), id) : null) as RefOrNull<Id>;
+
+export const {{pluralName}}Query = (parent: DocumentReference, ...queryConstraints: QueryConstraint[]) =>
+  query({{pluralName}}Ref(parent), ...(queryConstraints.length === 0 ? [orderBy('createdAt', 'asc')] : queryConstraints));
+{{else}}
+export const {{pluralName}}Ref = () => collection(getFirestore(), '{{pluralName}}').withConverter({{name}}Converter);
+
+type RefOrNull<Id extends string | null | undefined> = Id extends string ? DocumentReference<{{pascalCase name}}> : null;
+export const {{name}}Ref = <Id extends string | null | undefined>(id: Id) => (id ? doc({{pluralName}}Ref(), id) : null) as RefOrNull<Id>;
+
+export const {{pluralName}}Query = (...queryConstraints: QueryConstraint[]) =>
+  query({{pluralName}}Ref(), ...(queryConstraints.length === 0 ? [orderBy('createdAt', 'asc')] : queryConstraints));
+{{/if}}

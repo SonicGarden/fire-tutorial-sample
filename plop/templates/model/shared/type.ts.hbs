@@ -1,0 +1,8 @@
+import type { WithId } from './firebase';
+
+export type {{pascalCase name}}DocumentData<Timestamp> = {
+  createdAt: Timestamp;
+  updatedAt: Timestamp;
+};
+
+export type {{pascalCase name}}<Timestamp> = WithId<{{pascalCase name}}DocumentData<Timestamp>>;
