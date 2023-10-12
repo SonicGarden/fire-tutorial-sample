@@ -1,8 +1,9 @@
-import { useRouter } from 'next/router';
+'use client';
+import { useRouter } from 'next/navigation';
 import { LoadingScreen } from '@/components/screens/LoadingScreen';
 
 export const AdminRoot = () => {
   const router = useRouter();
-  router.isReady && router.replace('/admin/books');
+  router.replace('/admin/books');
   return <LoadingScreen />;
 };
