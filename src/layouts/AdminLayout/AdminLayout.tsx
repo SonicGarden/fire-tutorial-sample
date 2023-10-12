@@ -1,5 +1,5 @@
 'use client';
-import { useRouter, usePathname, useSearchParams } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { ResponsiveLayout, useResponsiveLayoutContext } from '@/components/layouts/ResponsiveLayout';
 import { LoadingScreen } from '@/components/screens/LoadingScreen';
 import { NotFoundScreen } from '@/components/screens/NotFoundScreen';
@@ -13,8 +13,7 @@ import type { ReactNode } from 'react';
 
 export const AdminLayout = withAuth(({ children }: { children: ReactNode }) => {
   const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
+  const pathname = usePathname()!;
   const { loading, currentUser } = useAuth();
   const { validatePathPermission } = usePermissions();
 
@@ -23,7 +22,7 @@ export const AdminLayout = withAuth(({ children }: { children: ReactNode }) => {
     router.push(`/admin/sign-in?redirect=${pathname}`);
     return <LoadingScreen />;
   }
-  if (!validatePathPermission(`${pathname}${searchParams?.toString()}`))
+  if (!validatePathPermission(pathname))
     return (
       <_Layout>
         <NotFoundScreen />
