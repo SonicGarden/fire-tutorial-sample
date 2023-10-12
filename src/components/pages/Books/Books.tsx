@@ -1,3 +1,4 @@
+'use client';
 import { Box, Group, LoadingOverlay } from '@mantine/core';
 import { booksQuery, useBookCollection } from '@/models/book';
 import { Book } from './_components/Book';

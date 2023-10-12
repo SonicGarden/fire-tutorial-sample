@@ -1,3 +1,4 @@
+'use client';
 import { Box, Stack, Title, Group, Table, ActionIcon, LoadingOverlay } from '@mantine/core';
 import { IconSquareRoundedPlus } from '@tabler/icons-react';
 import { UnstyledModalButton } from '@/components/elements/ModalButton';
