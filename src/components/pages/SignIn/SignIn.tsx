@@ -1,3 +1,4 @@
+'use client';
 import { Stack } from '@mantine/core';
 import { SignInWithEmailAndPasswordForm } from '@/components/forms/auth/SignInWithEmailAndPasswordForm';
 
