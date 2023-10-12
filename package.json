@@ -9,7 +9,7 @@
     "lint": "next lint && stylelint 'src/**/*.css'",
     "lint:fix": "next lint --fix && stylelint 'src/**/*.css' --fix",
     "format": "prettier --write .",
-    "deploy": "rm -rf .firebase && yarn build && yarn rewrites:generate && firebase deploy --except functions --project default",
+    "deploy": "rm -rf .firebase && yarn build && firebase deploy --except functions --project default",
     "deploy:rules": "firebase deploy --only firestore:rules,storage --project default",
     "rewrites:generate": "next-csr-rewrites-generate --format firebase && yarn format",
     "update:shared": "rm -rf .next && yarn build:shared && yarn update:shared:hosting && yarn update:shared:functions",
