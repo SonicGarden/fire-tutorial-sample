@@ -1,3 +1,5 @@
+'use client';
+import '../app';
 import {
   createUserWithEmailAndPassword as _createUserWithEmailAndPassword,
   getAuth,

@@ -1,7 +1,7 @@
 import '@/styles/globals.css';
+import '@/utils/firebase/app';
 import { ColorSchemeScript } from '@mantine/core';
 import { MantineProvider } from '@/utils/mantine/provider';
-import { Layout } from './_components/Layout';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -16,9 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ColorSchemeScript />
       </head>
       <body>
-        <MantineProvider>
-          <Layout>{children}</Layout>
-        </MantineProvider>
+        <MantineProvider>{children}</MantineProvider>
       </body>
     </html>
   );

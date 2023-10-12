@@ -1,3 +1,5 @@
+'use client';
+import '../app';
 import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
 import type { StorageReference, UploadMetadata } from 'firebase/storage';
 
