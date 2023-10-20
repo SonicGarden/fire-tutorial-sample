@@ -18,7 +18,9 @@ service cloud.firestore {
 
     match /books/{bookId} {
       allow read: if true;
-      allow write: if isAdmin();
+      allow create: if isAdmin() && request.resource.data.createdAt == request.time;
+      allow update: if isAdmin() && request.resource.data.createdAt == resource.data.createdAt;
+      allow delete: if isAdmin();
     }
   }
 }
