@@ -1,5 +1,9 @@
 import { https, logger } from 'firebase-functions/v2';
-import { beforeUserCreated as _beforeUserCreated, HttpsError } from 'firebase-functions/v2/identity';
+import {
+  beforeUserCreated as _beforeUserCreated,
+  beforeUserSignedIn as _beforeUserSignedIn,
+  HttpsError,
+} from 'firebase-functions/v2/identity';
 import type { BlockingOptions } from 'firebase-functions/v2/identity';
 
 const defaultRegion = 'asia-northeast1';
@@ -13,4 +17,13 @@ const beforeUserCreated = (
   return _beforeUserCreated({ region: defaultRegion, memory: '1GiB', ...optsOrHandler }, handler);
 };
 
-export { beforeUserCreated, https, logger, HttpsError };
+type BeforeUserSignedInHandler = Parameters<typeof _beforeUserSignedIn>[1];
+const beforeUserSignedIn = (
+  optsOrHandler: BlockingOptions | BeforeUserSignedInHandler,
+  _handler?: BeforeUserSignedInHandler,
+) => {
+  const handler = _handler ?? (optsOrHandler as BeforeUserSignedInHandler);
+  return _beforeUserSignedIn({ region: defaultRegion, memory: '1GiB', ...optsOrHandler }, handler);
+};
+
+export { beforeUserCreated, beforeUserSignedIn, https, logger, HttpsError };
