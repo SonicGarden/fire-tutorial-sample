@@ -22,9 +22,9 @@ export const AccountMenu = () => {
         <>
           <NavLink
             label={
-              <Group>
+              <Group wrap='nowrap'>
                 <Avatar size='sm' />
-                <Text>{firebaseUser.email}</Text>
+                <Text truncate='end'>{firebaseUser.email}</Text>
               </Group>
             }
           >
