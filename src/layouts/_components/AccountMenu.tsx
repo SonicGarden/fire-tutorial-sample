@@ -22,9 +22,9 @@ export const AccountMenu = () => {
         <>
           <NavLink
             label={
-              <Group>
+              <Group wrap='nowrap'>
                 <Avatar size='sm' />
-                <Text>{currentUser.email}</Text>
+                <Text truncate='end'>{currentUser.email}</Text>
               </Group>
             }
           >
