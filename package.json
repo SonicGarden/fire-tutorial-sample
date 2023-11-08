@@ -20,11 +20,16 @@
   "dependencies": {
     "@local/shared": "file:functions/packages/shared",
     "@mantine/core": "^7.1.0",
+    "@mantine/form": "^7.1.0",
     "@mantine/hooks": "^7.1.0",
+    "@mantine/modals": "^7.1.0",
+    "@mantine/notifications": "^7.1.0",
     "firebase": "^10.4.0",
     "next": "latest",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "react-firebase-hooks": "^5.1.1",
+    "zod": "^3.22.2"
   },
   "devDependencies": {
     "@sonicgarden/next-csr-rewrites-generator": "^1.2.0",
