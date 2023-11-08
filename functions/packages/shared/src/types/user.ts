@@ -1,6 +1,6 @@
 import type { WithId } from './firebase';
 
-export type UserRole = 'user';
+export type UserRole = 'user' | 'admin';
 
 export type UserDocumentData<Timestamp> = {
   createdAt: Timestamp;

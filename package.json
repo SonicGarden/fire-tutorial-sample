@@ -26,6 +26,7 @@
     "@mantine/hooks": "^7.1.0",
     "@mantine/modals": "^7.1.0",
     "@mantine/notifications": "^7.1.0",
+    "@tabler/icons-react": "^2.38.0",
     "firebase": "^10.4.0",
     "next": "latest",
     "react": "latest",
@@ -60,6 +61,7 @@
     "stylelint-order": "^6.0.3",
     "tailwindcss": "latest",
     "ts-node": "^10.9.1",
-    "typescript": "latest"
+    "typescript": "latest",
+    "yesno": "^0.4.0"
   }
 }

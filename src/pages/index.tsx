@@ -1,5 +1,5 @@
-import { Center } from '@mantine/core';
+import { Root } from '@/components/pages/Root';
 
-export default function Home() {
-  return <Center>Home</Center>;
+export default function RootPage() {
+  return <Root />;
 }
