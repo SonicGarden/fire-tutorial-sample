@@ -1,4 +1,5 @@
 import '@/styles/globals.css';
+import '@/utils/firebase/app';
 import Head from 'next/head';
 import { Layout } from '@/layouts/Layout';
 import { MantineProvider } from '@/utils/mantine/provider';
