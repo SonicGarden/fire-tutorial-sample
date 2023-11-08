@@ -1,0 +1,22 @@
+import {
+  getConverter,
+{{#unless subCollection}}
+  getFirestore,
+{{/unless}}
+} from '../utils/firebase';
+import type { {{pascalCase name}}DocumentData } from '../types/{{name}}';
+{{#if subCollection}}
+import type { DocumentReference } from '../utils/firebase/firestore';
+{{/if}}
+
+export const {{name}}Converter = getConverter<{{pascalCase name}}DocumentData>();
+
+{{#if subCollection}}
+export const {{pluralName}}Ref = (parent: DocumentReference) => parent.collection('{{pluralName}}').withConverter({{name}}Converter);
+
+export const {{name}}Ref = (parent: DocumentReference, id: string) => {{pluralName}}Ref(parent).doc(id);
+{{else}}
+export const {{pluralName}}Ref = () => getFirestore().collection('{{pluralName}}').withConverter({{name}}Converter);
+
+export const {{name}}Ref = (id: string) => {{pluralName}}Ref().doc(id);
+{{/if}}

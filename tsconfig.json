@@ -20,6 +20,7 @@
   "include": [
     "next-env.d.ts",
     "next.config.js",
+    "plopfile.mjs",
     "postcss.config.js",
     ".eslintrc.js",
     ".prettierrc.js",

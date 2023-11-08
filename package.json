@@ -17,7 +17,8 @@
     "update:shared:hosting": "yarn add file:functions/packages/shared",
     "update:shared:functions": "cd functions && yarn add file:packages/shared",
     "preinstall": "cd functions/packages/shared && yarn install && yarn build",
-    "ts-node": "env-cmd -f .env.default ts-node"
+    "ts-node": "env-cmd -f .env.default ts-node",
+    "plop": "plop --plopfile plopfile.mjs"
   },
   "dependencies": {
     "@local/shared": "file:functions/packages/shared",
@@ -51,6 +52,7 @@
     "eslint-plugin-import": "^2.28.1",
     "eslint-plugin-tailwindcss": "^3.13.0",
     "firebase-admin": "^11.11.0",
+    "plop": "^4.0.0",
     "postcss": "^8.4.31",
     "postcss-preset-mantine": "^1.7.0",
     "postcss-simple-vars": "^7.0.1",
