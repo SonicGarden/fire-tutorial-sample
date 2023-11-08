@@ -10,9 +10,15 @@
     "lint:fix": "next lint --fix && stylelint 'src/**/*.css' --fix",
     "format": "prettier --write .",
     "deploy": "rm -rf .firebase && yarn build && yarn rewrites:generate && firebase deploy --except functions --project default",
-    "rewrites:generate": "next-csr-rewrites-generate --format firebase && yarn format"
+    "rewrites:generate": "next-csr-rewrites-generate --format firebase && yarn format",
+    "update:shared": "rm -rf .next && yarn build:shared && yarn update:shared:hosting && yarn update:shared:functions",
+    "build:shared": "cd functions/packages/shared && yarn build",
+    "update:shared:hosting": "yarn add file:functions/packages/shared",
+    "update:shared:functions": "cd functions && yarn add file:packages/shared",
+    "preinstall": "cd functions/packages/shared && yarn install && yarn build"
   },
   "dependencies": {
+    "@local/shared": "file:functions/packages/shared",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest"
