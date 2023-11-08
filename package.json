@@ -3,25 +3,29 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "env-cmd -f .env.default next dev",
+    "build": "env-cmd -f .env.default next build",
+    "start": "env-cmd -f .env.default next start",
+    "lint": "next lint",
+    "deploy": "rm -rf .firebase && yarn build && yarn rewrites:generate && firebase deploy --project default",
+    "rewrites:generate": "next-csr-rewrites-generate --format firebase"
   },
   "dependencies": {
+    "next": "latest",
     "react": "latest",
-    "react-dom": "latest",
-    "next": "latest"
+    "react-dom": "latest"
   },
   "devDependencies": {
-    "typescript": "latest",
-    "@types/react": "latest",
+    "@sonicgarden/next-csr-rewrites-generator": "^1.2.0",
     "@types/node": "latest",
+    "@types/react": "latest",
     "@types/react-dom": "latest",
     "autoprefixer": "latest",
+    "env-cmd": "^10.1.0",
+    "eslint": "latest",
+    "eslint-config-next": "latest",
     "postcss": "latest",
     "tailwindcss": "latest",
-    "eslint": "latest",
-    "eslint-config-next": "latest"
+    "typescript": "latest"
   }
 }
