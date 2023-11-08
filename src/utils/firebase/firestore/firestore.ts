@@ -1,12 +1,26 @@
-import { collection, doc, getFirestore, serverTimestamp as _serverTimestamp, Timestamp } from 'firebase/firestore';
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getFirestore,
+  orderBy,
+  query,
+  serverTimestamp as _serverTimestamp,
+  setDoc,
+  updateDoc,
+  Timestamp,
+} from 'firebase/firestore';
 import type { WithId } from '@local/shared';
 import type {
   DocumentData,
   DocumentReference,
   FirestoreDataConverter,
   PartialWithFieldValue,
+  Query,
+  QueryConstraint,
   QueryDocumentSnapshot,
   SnapshotOptions,
+  UpdateData,
 } from 'firebase/firestore';
 
 const getConverter = <T extends DocumentData>(): FirestoreDataConverter<WithId<T>> => ({
@@ -22,5 +36,17 @@ const getConverter = <T extends DocumentData>(): FirestoreDataConverter<WithId<T
 
 const serverTimestamp = _serverTimestamp as unknown as () => Timestamp;
 
-export type { DocumentReference };
-export { collection, doc, getConverter, getFirestore, serverTimestamp, Timestamp };
+export type { DocumentReference, Query, QueryConstraint, UpdateData };
+export {
+  collection,
+  doc,
+  deleteDoc,
+  getConverter,
+  getFirestore,
+  orderBy,
+  query,
+  serverTimestamp,
+  setDoc,
+  updateDoc,
+  Timestamp,
+};
