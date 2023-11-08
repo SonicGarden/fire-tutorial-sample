@@ -1,4 +1,5 @@
-import { useRouter } from 'next/router';
+'use client';
+import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 import { ResponsiveLayout, useResponsiveLayoutContext } from '@/components/layouts/ResponsiveLayout';
 import { LoadingScreen } from '@/components/screens/LoadingScreen';
 import { useAuth, withAuth } from '@/contexts/auth';
@@ -8,14 +9,16 @@ import type { ReactNode } from 'react';
 
 export const AuthLayout = withAuth(({ children }: { children: ReactNode }) => {
   const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const { loading, firebaseUser } = useAuth();
-  const isAdminPage = router.pathname.startsWith('/admin');
+  const isAdminPage = pathname?.startsWith('/admin') ?? false;
   const rootPath = isAdminPage ? '/admin' : '/';
   const title = isAdminPage ? <AdminTitle /> : <Title />;
 
   if (loading) return <LoadingScreen />;
   if (firebaseUser) {
-    router.push((router.query.redirect ?? rootPath) as string);
+    router.push((searchParams?.get('redirect') ?? rootPath) as string);
     return <LoadingScreen />;
   }
 

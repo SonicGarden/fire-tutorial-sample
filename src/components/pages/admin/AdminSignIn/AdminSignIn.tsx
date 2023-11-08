@@ -1,3 +1,4 @@
+'use client';
 import { Center } from '@mantine/core';
 import { SignInWithGoogleForm } from '@/components/forms/auth/SignInWithGoogleForm';
 

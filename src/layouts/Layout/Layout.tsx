@@ -1,3 +1,4 @@
+'use client';
 import { ResponsiveLayout, useResponsiveLayoutContext } from '@/components/layouts/ResponsiveLayout';
 import { withAuth } from '@/contexts/auth';
 import { AccountMenu } from '../_components/AccountMenu';

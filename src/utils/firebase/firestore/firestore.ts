@@ -1,3 +1,5 @@
+'use client';
+import '../app';
 import {
   collection,
   deleteDoc,
